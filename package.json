@@ -8,6 +8,10 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
+  "styles": [
+    "node_modules/bootstrap/dist/css/bootstrap.min.css",
+    "src/styles.css"
+  ],
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.2.0",
@@ -15,9 +19,12 @@
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
     "@angular/forms": "~12.2.0",
+    "@angular/localize": "~12.2.0",
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@ng-bootstrap/ng-bootstrap": "^10.0.0",
+    "bootstrap": "^5.1.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

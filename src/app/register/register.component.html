@@ -1,0 +1,214 @@
+<div class="container my-5">
+  <form
+    [formGroup]="regForm"
+    class="text-left"
+    (ngSubmit)="submitReactiveForm()"
+  >
+    <div class="row">
+      <div class="mb-3">
+        <label for="emailReg" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="emailReg"
+          name="email"
+          formControlName="email"
+        />
+      </div>
+      <div
+        *ngIf="regFormControls.email.touched && !regFormControls.email.valid"
+      >
+        <small
+          class="text-danger"
+          *ngIf="regFormControls.email.errors!.required"
+        >
+          This field is required
+        </small>
+        <small class="text-danger" *ngIf="regFormControls.email.errors!.email">
+          Should be an email
+        </small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3">
+        <label for="nameReg" class="form-label">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nameReg"
+          name="name"
+          formControlName="name"
+        />
+      </div>
+      <div *ngIf="regFormControls.name.touched && !regFormControls.name.valid">
+        <small
+          class="text-danger"
+          *ngIf="regFormControls.name.errors!.required"
+        >
+          This field is required
+        </small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3">
+        <label for="userName" class="form-label">User Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="userName"
+          name="userName"
+          formControlName="userName"
+        />
+      </div>
+      <div
+        *ngIf="
+          regFormControls.userName.touched && !regFormControls.userName.valid
+        "
+      >
+        <small
+          class="text-danger"
+          *ngIf="regFormControls.userName.errors!.required"
+        >
+          This field is required
+        </small>
+        <small
+          class="text-danger"
+          *ngIf="regFormControls.userName.errors!.pattern"
+        >
+          Can't contain white spaces
+        </small>
+      </div>
+    </div>
+   
+    <div class="row">
+      <div class="mb-3">
+        <label for="passwordReg" class="form-label"> Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="passwordReg"
+          name="password"
+          formControlName="password"
+        />
+      </div>
+      <div
+        *ngIf="
+          regFormControls.password.touched && !regFormControls.password.valid
+        "
+      >
+        <small
+          class="text-danger"
+          *ngIf="regFormControls.password.errors!.required"
+        >
+          This field is required
+        </small>
+        <small
+          class="text-danger"
+          *ngIf="regFormControls.password.errors!.pattern"
+        >
+          Must contain Uppercase,lowerCase, special char, number
+        </small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="confirmPassword"
+          name="confirmPassword"
+          formControlName="confirmPassword"
+        />
+      </div>
+      <div
+        *ngIf="
+          regFormControls.confirmPassword.touched &&
+          !regFormControls.confirmPassword.valid
+        "
+      >
+        <small
+          class="text-danger"
+          *ngIf="regFormControls.confirmPassword.errors!.required"
+        >
+          This field is required
+        </small>
+      
+
+        <small
+          class="text-danger"
+          *ngIf="regFormControls.confirmPassword.errors!.confirmedValidator"
+        >
+          Must be the same as the password
+        </small>
+      </div>
+    </div>
+
+ 
+    <div formArrayName="addresses">
+    <div  *ngFor="let address of addressesList.controls; let i = index">
+      <div [formGroupName]="i">
+        {{ i }}
+        <div class="row">
+        <div class="col">
+          <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              name="address"
+              formControlName="address"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input
+              type="text"
+              class="form-control"
+              id="city"
+              name="city"
+              formControlName="city"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="street" class="form-label">Street</label>
+            <input
+              type="text"
+              class="form-control"
+              id="street"
+              name="street"
+              formControlName="street"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-3">
+            <label for="country" class="form-label">Country</label>
+            <input
+              type="text"
+              class="form-control"
+              id="country"
+              name="country"
+              formControlName="country"
+            />
+          </div>
+        </div>
+      </div>
+      </div>
+    </div> 
+  </div>
+   <div class="row">
+    <button type="button" (click)="addAddress()" class="col-2 btn btn-primary">
+      Add Address
+    </button>
+   </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!regForm.valid">
+      Submit
+    </button>
+  </form>
+</div>

@@ -1,0 +1,60 @@
+<div class="container">
+  <form
+    novalidate
+    #logInForm="ngForm"
+    (ngSubmit)="submitLoginForm(logInForm.value)"
+    class="w-50 "
+  >
+    <div class="mb-3 row">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        aria-describedby="email"
+        name="email"
+        #email="ngModel"
+        ngModel
+        required
+      />
+    </div>
+    <!-- [(ngModel)]="logInForm.email" -->
+    <div *ngIf="email.touched && !email.valid">
+      <small class="text-danger" *ngIf="email.errors!.required">
+        This field is required
+      </small>
+      <small class="text-danger" *ngIf="email.errors!.pattern">
+        Make sure you type an email
+      </small>
+    </div>
+
+    <div class="mb-3 row">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        aria-describedby="password"
+        name="password"
+        #password="ngModel"
+        ngModel
+        required
+        minlength="8"
+      />
+    </div>
+    <div *ngIf="password.touched && !password.valid">
+      <small class="text-danger" *ngIf="password.errors!.required">
+        This field is required
+      </small>
+      <small class="text-danger" *ngIf="password.errors!.minlength">
+        Make sure It's more than 6 chars.
+      </small>
+    </div>
+
+    <!-- {{ moviesForm.value | json }} -->
+
+    <button type="submit" class="btn btn-primary" [disabled]="!logInForm.valid">
+      Log In
+    </button>
+  </form>
+</div>
