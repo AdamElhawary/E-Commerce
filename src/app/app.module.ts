@@ -11,7 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './cart/cart.component';
 import { PricePipe } from './pipes/price.pipe';
-
+import { WishListComponent } from './wish-list/wish-list.component';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from 'src/app/store/WishList/WishList.reducer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,7 @@ import { PricePipe } from './pipes/price.pipe';
     ProductDetailComponentComponent,
     CartComponent,
     PricePipe,
-  
+    WishListComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,9 @@ import { PricePipe } from './pipes/price.pipe';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule,
+    StoreModule.forRoot({ WishList: reducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],

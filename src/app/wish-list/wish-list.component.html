@@ -1,0 +1,23 @@
+<div class="wrapper px-4">
+  <div class="row">
+    <div class="col">
+      <h2>Wish list</h2>
+    </div>
+    <div class="col-5">
+      <div class="count">{{ count }}</div>
+    </div>
+  </div>
+  <div class="wish__card pb-2 row" *ngFor="let product of listItems">
+    <div class="col">
+      <img
+        [src]="product.image"
+        alt="poduct Image"
+        style="width: 50px; height: 50px"
+      />
+    </div>
+    <div class="col">
+      <h5 class="card-title">{{ product.title }}</h5>
+      <p class="card-text">{{ product.price | price }}</p>
+    </div>
+  </div>
+</div>

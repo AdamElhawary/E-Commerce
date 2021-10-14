@@ -1,23 +1,38 @@
-<div class="row card__wrapper">
-  <div class=" card__item col-md-4" *ngFor="let product of Products">
-    <a
-    
+<div class="row">
+  <div class="col-8">
+    <div class="row card__wrapper">
+      <div
+        class="card__item col-md-6"
+        *ngFor="let product of Products; let i = index"
+      >
+        <a
           [routerLink]="['/product-detail/', product.id]"
           class="card mb-3 card__link"
+        >
+          <div class="card-body row">
+            <img class="col-12" [src]="product.image" />
+            <div class="col-12">
+              <h5 class="card-title">{{ product.title }}</h5>
+              <p class="card-text">{{ product.price | price }}</p>
+            </div>
+          </div>
+        </a>
+        <div class="col-12 button__div">
+          <button class="btn btn-danger" (click)="addToCartLocal(product)">
+            Add To Cart
+          </button>
+          <button
+            [ngStyle]="{ color: clickedIndex.includes(i) ? 'yellow' : 'black' }"
+            class="star"
+            (click)="addToWishList(product, i)"
           >
-      <div class="card-body row">
-        <img class="col-6" [src]="product.image" />
-        <div class="col-6">
-          <h5 class="card-title">{{ product.title }}</h5>
-        <p class="card-text">{{ product.price | price }}</p>
+            &#9733;
+          </button>
         </div>
-       
       </div>
- 
-  </a>
-  <div class="col-12 button__div">
-    <button class="btn btn-danger " (click)="addToCartLocal(product)">Add To Cart</button>
+    </div>
   </div>
+  <div class="col-4">
+    <app-wish-list></app-wish-list>
   </div>
-  
 </div>
