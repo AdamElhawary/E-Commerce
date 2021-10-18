@@ -3,7 +3,7 @@ import { ProductServService } from '../services/product-serv.service';
 import { CartService } from '../services/cart.service';
 import { Store } from '@ngrx/store';
 import { setWishList } from 'src/app/store/WishList/WishList.action';
-
+import { LoaderService } from 'src/app/services/loader.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -16,12 +16,18 @@ export class ProductsComponent implements OnInit {
   constructor(
     private productService: ProductServService,
     private cartService: CartService,
-    private store: Store
+    private store: Store,
+    private loaderService: LoaderService
   ) {}
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((response) => {
-      this.Products = response;
+      if (!response) {
+        this.loaderService.setIsLoading(true);
+      } else {
+        this.loaderService.setIsLoading(false);
+        this.Products = response;
+      }
     });
   }
   addToCartLocal(product: any) {
